@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suzuki Mind Map</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 90%;
+            max-height: 90%;
+            overflow: auto;
+        }
+        svg {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Embed the SVG directly or link to it -->
+        <object type="image/svg+xml" data="SuzukiIdeasMindMapCircular.svg" class="svg-container">
+            Your browser does not support SVGs.
+        </object>
+    </div>
+</body>
+</html>
