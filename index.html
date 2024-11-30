@@ -1,7 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repository Tree</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    ul { list-style-type: none; padding-left: 1em; }
+    ul li { margin: 0.5em 0; }
+  </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+  <h1>Repository Tree</h1>
+  <ul id="repo-tree"></ul>
+
+  <script>
+    async function fetchRepoTree() {
+      const owner = "Ibeshesumne"; // Replace with your username
+      const repo = "Ibeshesumne.github.io"; // Replace with your repository name
+      const branch = "main"; // Replace with the branch name (e.g., main or master)
+
+      const apiUrl = `https://api.github.com/repos/${owner}/${repo}/git/trees/${branch}?recursive=1`;
+
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error(`Failed to fetch tree: ${response.statusText}`);
+
+        const data = await response.json();
+        const tree = data.tree.filter(item => item.type === "blob");
+        
+        const treeContainer = document.getElementById("repo-tree");
+        tree.forEach(item => {
+          const listItem = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = item.path; // Links to the file or page
+          link.textContent = item.path;
+          listItem.appendChild(link);
+          treeContainer.appendChild(listItem);
+        });
+      } catch (error) {
+        console.error(error);
+        document.getElementById("repo-tree").textContent = "Error loading repository tree.";
+      }
+    }
+
+    fetchRepoTree();
+  </script>
 </body>
 </html>
